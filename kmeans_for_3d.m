@@ -7,7 +7,7 @@ function [G, C]= kmeans_for_3d(X, number_of_classes, plotoption)
 
 [G,C] = kmeans(X, number_of_classes, 'distance','sqEuclidean', 'start','sample');
 
-%# show points and clusters (color-coded)////
+%# show points and clusters (color-coded)
 clr = lines(number_of_classes);
 if plotoption
 figure, hold on

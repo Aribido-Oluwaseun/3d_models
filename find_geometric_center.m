@@ -15,8 +15,7 @@ function [xsr, ysr, zsr, x_i_ss, y_i_ss,z_i_ss] = find_geometric_center(g, x, y,
    y_i = y(ind); 
    z_i = z(ind);
    
-  
-   
+    
    x_i_ss = x_i(1:ss:end);
    y_i_ss = y_i(1:ss:end);
    z_i_ss = z_i(1:ss:end);

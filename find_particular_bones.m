@@ -13,8 +13,8 @@ function [g, c, struct_of_xyz_for_n_bones_in_foot] = find_particular_bones(x,y,z
         field_name = sprintf('number_of_group%d',i);
         struct_of_xyz_for_n_bones_in_foot.(field_name) = [xg yg zg];
         subplot(1,numbers_of_groups,i), plot3(xg, yg, zg,'g.'); view(-49,-14); axis square; title('...');
-        
     end
+    
     
   
 end
