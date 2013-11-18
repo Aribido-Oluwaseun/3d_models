@@ -81,7 +81,7 @@ display('spherical_harmonics is running (2nd foot)')
 
 
 display('spherical_harmonics_for_particular_bones is running (1st foot)')
-[strucf_of_spherical_harmonics_for_particular_bones_foot1] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot1,number_of_bones_foot1);
+[strucf_of_spherical_harmonics_for_particular_bones_foot1] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot1, number_of_bones_foot1);
 
 display('spherical_harmonics_for_particular_bones is running (2nd foot)')
 [strucf_of_spherical_harmonics_for_particular_bones_foot2] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot2, number_of_bones_foot2);
