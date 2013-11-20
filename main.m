@@ -6,7 +6,7 @@ display('stlread is running')
 fv = stlread(FileName); 
 
 % plot_solid_from_stl(fv)
-save temp fv
+%save temp fv
  
 %load temp
 display('xtract_coorinates_from_stl is running')
@@ -49,6 +49,8 @@ x_foot2n = normalize(x_foot2-x_center_foot2);
 y_foot2n = normalize(y_foot2-y_center_foot2);   
 z_foot2n = normalize(z_foot2-z_center_foot2);
 
+
+
 struct_of_normalized_xyz_for_n_bones_in_foot1 = normalization(struct_of_xyz_for_n_bones_in_foot1, struct_of_xyz_centers_for_n_bones_in_foot1);
 struct_of_normalized_xyz_for_n_bones_in_foot2 = normalization(struct_of_xyz_for_n_bones_in_foot2, struct_of_xyz_centers_for_n_bones_in_foot2);
 
@@ -65,19 +67,21 @@ struct_of_normalized_xyz_for_n_bones_in_foot2 = normalization(struct_of_xyz_for_
 
 
 
+
+
 display('spherical_harmonics is running (1st foot)')
 [bhat1, xhat1, yhat1, zhat1] = spherical_harmonics(x_foot1n, y_foot1n, z_foot1n, 10);
+%  plotowanie
+figure, subplot(1,2,1), plot3(x_foot1n,y_foot1n,z_foot1n,'.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
+subplot(1,2,2), plot3(xhat1, yhat1, zhat1, 'r.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
+
+
+
 display('spherical_harmonics is running (2nd foot)')
 [bhat2, xhat2, yhat2, zhat2] = spherical_harmonics(x_foot2n, y_foot2n, z_foot2n, 10);
+figure, subplot(1,2,1), plot3(x_foot2,y_foot2,z_foot2,'.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
+subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
 
-
-%  plotowanie
-% figure, subplot(1,2,1), plot3(x_foot1n,y_foot1n,z_foot1n,'.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
-% subplot(1,2,2), plot3(xhat1, yhat1, zhat1, 'r.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
-% 
-% 
-% figure, subplot(1,2,1), plot3(x_foot2,y_foot2,z_foot2,'.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
-% subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); view(-49,-14);axis([-1 1 -1 1 -1 1])
 
 
 display('spherical_harmonics_for_particular_bones is running (1st foot)')
