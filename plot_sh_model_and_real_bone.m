@@ -1,11 +1,11 @@
-function plot_sh_model_and_real_bone(coordinates_of_spherical_harmonics_for_particular_bones_foot, struct_of_normalized_xyz_for_n_bones_in_foot)
+function plot_sh_model_and_real_bone(coordinates_of_spherical_harmonics_for_particular_bones_foot, struct_of_normalized_xyz_for_n_bones_in_foot, figure_title)
 
 
 field_names = fieldnames(coordinates_of_spherical_harmonics_for_particular_bones_foot);
 
 [number_of_fields, n] = size(field_names);
+figure('name', figure_title);
 
-   figure('name','Particular bones of foot');
     for i=1:number_of_fields
         x = coordinates_of_spherical_harmonics_for_particular_bones_foot.(char(field_names(i)))(:,1);
         y = coordinates_of_spherical_harmonics_for_particular_bones_foot.(char(field_names(i)))(:,2);
