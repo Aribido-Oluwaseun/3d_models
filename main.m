@@ -52,6 +52,9 @@ x_foot2n = normalize(x_foot2-x_center_foot2);
 y_foot2n = normalize(y_foot2-y_center_foot2);   
 z_foot2n = normalize(z_foot2-z_center_foot2);
 
+
+
+
 foot1= [x_foot1n, y_foot1n, z_foot1n];
 foot2= [x_foot2n, y_foot2n, z_foot2n];
 
@@ -81,26 +84,18 @@ plot_convn_of_sh_coef(bhat1, bhat2)
 
 display('spherical_harmonics_for_particular_bones is running (1st foot)')
 [coordinates_of_spherical_harmonics_for_particular_bones_foot1, struct_of_coef_spherical_harmonics_for_particular_bones_foot1] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot1, number_of_bones_foot1);
+display('spherical_harmonics_for_particular_bones is running (2nd foot)')
+[coordinates_of_spherical_harmonics_for_particular_bones_foot2, struct_of_coef_spherical_harmonics_for_particular_bones_foot2] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot2, number_of_bones_foot2);
 
 
 
 figure_title = disp_or_write_msg_var('Particular bones of foot: ', foot1);   
-
 plot_sh_model_and_real_bone(coordinates_of_spherical_harmonics_for_particular_bones_foot1, struct_of_normalized_xyz_for_n_bones_in_foot1, figure_title)
-
-plot_sh_coeff_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot1, struct_of_normalized_xyz_for_n_bones_in_foot1)
-
-
-
-display('spherical_harmonics_for_particular_bones is running (2nd foot)')
-[coordinates_of_spherical_harmonics_for_particular_bones_foot2, struct_of_coef_spherical_harmonics_for_particular_bones_foot2] = spherical_harmonics_for_particular_bones(struct_of_normalized_xyz_for_n_bones_in_foot2, number_of_bones_foot2);
-
 figure_title2 = disp_or_write_msg_var('Particular bones of foot: ', foot2);   
 plot_sh_model_and_real_bone(coordinates_of_spherical_harmonics_for_particular_bones_foot2, struct_of_normalized_xyz_for_n_bones_in_foot2, figure_title2)
 
 
-
-
+plot_sh_coeff_for_particular_bones(struct_of_coef_spherical_harmonics_for_particular_bones_foot1,struct_of_coef_spherical_harmonics_for_particular_bones_foot2)
 
 
 % 
