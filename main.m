@@ -74,11 +74,12 @@ subplot(1,2,2), plot3(xhat1, yhat1, zhat1, 'r.'); title('Model foot'); view(-49,
 
 display('spherical_harmonics is running (2nd foot)')
 [bhat2, xhat2, yhat2, zhat2] = spherical_harmonics(x_foot2n, y_foot2n, z_foot2n, 10);
-%plot_sh_model_and_real_bone()
+
 figure, subplot(1,2,1), plot3(x_foot2n,y_foot2n,z_foot2n,'.'); view(-49,-14);title('Real foot');axis([-1 1 -1 1 -1 1])
 subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); title('Model foot');view(-49,-14);axis([-1 1 -1 1 -1 1])
 
 plot_sh_coeff(bhat1, bhat2)
+compare_sh_coeff(bha1,bhat2)
 plot_convn_of_sh_coef(bhat1, bhat2)
 
 
