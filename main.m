@@ -44,13 +44,18 @@ display('find_geometric_center_for_particular_bones for the second foot is runni
 display('normalize is running')
 
 
-x_foot1n = normalize(x_foot1-x_center_foot1);
-y_foot1n = normalize(y_foot1-y_center_foot1);   
-z_foot1n = normalize(z_foot1-z_center_foot1);
+[x_foot1n, norm_coeff_x_foot1] = normalize(x_foot1-x_center_foot1);
+[y_foot1n, norm_coeff_y_foot1] = normalize(y_foot1-y_center_foot1);   
+[z_foot1n, norm_coeff_z_foot1] = normalize(z_foot1-z_center_foot1);
 
-x_foot2n = normalize(x_foot2-x_center_foot2);
-y_foot2n = normalize(y_foot2-y_center_foot2);   
-z_foot2n = normalize(z_foot2-z_center_foot2);
+x_foot2n = (x_foot2-x_center_foot2)/norm_coeff_x_foot1;
+y_foot2n = (y_foot2-y_center_foot2)/norm_coeff_y_foot1;   
+z_foot2n = (z_foot2-z_center_foot2)/norm_coeff_z_foot1;
+
+% 
+% x_foot2n = normalize(x_foot2-x_center_foot2);
+% y_foot2n = normalize(y_foot2-y_center_foot2);   
+% z_foot2n = normalize(z_foot2-z_center_foot2);
 
 
 
@@ -79,7 +84,7 @@ figure, subplot(1,2,1), plot3(x_foot2n,y_foot2n,z_foot2n,'.'); view(-49,-14);tit
 subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); title('Model foot');view(-49,-14);axis([-1 1 -1 1 -1 1])
 
 plot_sh_coeff(bhat1, bhat2)
-compare_sh_coeff(bha1,bhat2)
+compare_sh_coeff(bhat1,bhat2)
 plot_convn_of_sh_coef(bhat1, bhat2)
 
 

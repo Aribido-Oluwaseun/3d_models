@@ -1,6 +1,6 @@
 function [g, c, struct_of_xyz_for_n_bones_in_foot] = find_particular_bones(x,y,z)
     data = [x,y,z];
-    plotoption = 0;
+    plotoption = 1;
     numbers_of_groups = 3;
     [g,c] = kmeans_for_3d(data, numbers_of_groups, plotoption);
     
