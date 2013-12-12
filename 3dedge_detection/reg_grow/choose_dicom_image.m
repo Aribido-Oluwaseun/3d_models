@@ -13,7 +13,7 @@ function [image] = choose_dicom_image(dicom_cube, plane, slice_num)
     
     %image = double(squeeze(threedarray(axvert,axhorz,z)));
     image = imadjust(image/max(image(:)),[0 1],[0 1],2*(1-0.5));%(1-get(slide,'Value')));
-    figure, imshow(image);
+    %figure, imshow(image);
  
 
 end
