@@ -1,0 +1,29 @@
+function multithreshoing_for_3d(dicom_cube)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+[p,q,r] = size(dicom_cube);
+x=1:p;
+y=1:q;
+z=1:r;
+
+data3d = dicom_cube(:);
+data3d = reshape(data3d, p,q*r);
+thresh = multitresh(data3d, 4);
+segmented_image = imquantize(data3d, thresh);
+bone = segmented_image == 5;        % magic numbers: 5 - segmented class describing bone layer;)
+
+% for ii=1:z,
+% subplot(121);imagesc(dicom_cube(:,:,ii));colormap gray
+% subplot(122);imshow(ind5(:,(ii-1)*512+1:ii*512))
+% pause
+% end
+
+
+%plot 3d bone layer
+[X,Y,Z]=meshgrid(x,y,z);
+X=X(bone);
+Y=Y(bone);
+Z=Z(bone);
+figure, plot(X,Y,Z,'r.');
+end
+
