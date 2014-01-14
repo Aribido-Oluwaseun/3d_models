@@ -8,21 +8,29 @@ dicom_cube = gather_dicom_cube;
 image = choose_dicom_image(dicom_cube,'axial',220);
 [thresh, segmented_image] = multithresholding(image, 4);
 [struct_segmented_images, bone] = extract_tissue_layers(segmented_image, thresh);
-filled_bone = imfill(bone,'holes');
+%filled_bone = imfill(bone,'holes');
 
-[m, n] = size(filled_bone);
+[m, n] = size(bone);
 init_pos = [];
+contours_counter = 0;
 for i=1:m
         for j=1:n
-            if filled_bone(i,j)==1
+            
+            if bone(i,j)== 1
             init_pos = [i,j,1];
-            cont = regionGrowing(filled_bone, init_pos);
-            %coordinates_inside_contour =
-            %find_coordinates_inside_contour(cont);
             
-            %countour_decreased_bone = filled_bone - coordinates_inside_contour
+            contour = regionGrowing(bone, init_pos);
+            contour_to_substract = save_contour_in_bw_image_in_slice_size(bone, contour);
+            filled_contour = imfill(contour_to_substract,'holes');
             
+            contours_counter = contours_counter +1;
+            field_name = sprintf('bone%d',contours_counter); 
+            [x,y]= find(filled_contour==1) % find coordinates of filled contour
+            struct_of_bones_coordinates.field_name = [x,y]
             
+            new_bone = bone - filled_contour;
+            
+           
             
             end
         end
