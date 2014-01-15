@@ -1,5 +1,5 @@
 
-function automatic_region_growing()
+function run_automatic_region_growing()
 % run_region_growing_on_slice finds the countour in segemtned image
 %   INPUTS: number of contours, you would like to find
 
@@ -11,7 +11,7 @@ image = choose_dicom_image(dicom_cube,'axial',220);
 %filled_bone = imfill(bone,'holes');
 [struct_of_bones_coordinates] = find_all_bones_coorinates(bone)
 
-
+plot_region_growing_bones(struct_of_bones_coordinates)
 
 
 end
