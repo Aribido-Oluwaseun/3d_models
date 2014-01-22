@@ -11,7 +11,7 @@ image = choose_dicom_image(dicom_cube,'axial',220);
 %filled_bone = imfill(bone,'holes');
 [struct_of_bones_coordinates] = find_all_bones_coorinates(bone)
 
-plot_region_growing_bones(struct_of_bones_coordinates)
+plot_region_growing_bones(struct_of_bones_coordinates, bone)
 
 
 end

@@ -15,7 +15,7 @@ contoured_wih_morphological_operation_image = morphological_contouring(bone);
 
 %branch ---------multithreshold in 3d
 
-[bones3d,p,q,r] = multithresholding_for_3d(dicom_cube);
+[bones3d, p, q, r] = multithresholding_for_3d(dicom_cube);
 %-----------------plot 3d bones and plot "movie" from bones------
 plot_3d_layer(p,q,r, bones3d)
 plot_movie_layer(dicom_cube, bones3d, p, q, r)
