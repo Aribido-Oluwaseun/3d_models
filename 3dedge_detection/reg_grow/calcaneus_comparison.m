@@ -1,13 +1,14 @@
-function calcaneus_comparison()
 %--------------------------- data preprocessing
 dicom_cube = gather_dicom_cube;
 [bones3d,p,q,r] = multithresholding_for_3d(dicom_cube); %find bone in 3d
 %plot_3d_thresholded(p,q,r, bones3d, 100);
 bones_cube = save_bones3d_to_3d_matrix_as_bw(bones3d);
-load segmented_bones
+
+%load segmented_bones
 %plot_region_growing_bones_3d(struct_of_bones_coordinates_3d,10)
 bones_xyz = matrix3d_to_xyz_coordinates(bones3d);
 
+%load calcaneus
 %------------------------------ calcaneus extraction
 b11 = struct_of_bones_coordinates_3d.bone111; %calcaneus 1 part1
 b12 = struct_of_bones_coordinates_3d.bone105; %calcaneus 1 part2
@@ -43,66 +44,27 @@ hold off
 
 
 [bhat1, xhat1, yhat1, zhat1] = spherical_harmonics(x1n, y1n, z1n, 10);
-[bhat2, xhat2, yhat2, zhat2] = spherical_harmonics(x2n, y2n, z2n, 10);'
+[bhat2, xhat2, yhat2, zhat2] = spherical_harmonics(x2n, y2n, z2n, 10);
  
 
 % ----------------------- calcaneus comparison
 
+figure, subplot(1,2,1), plot3(x1n, y1n, z1n,'.'); title('Real foot'); view(-49,-14); axis([-1 1 -1 1 -1 1])
+subplot(1,2,2), plot3(xhat1, yhat1, zhat1, 'r.'); title('Model foot'); view(-49,-14); axis([-1 1 -1 1 -1 1])
+
+figure, subplot(1,2,1), plot3(x2n,y2n,z2n,'.'); view(-49,-14);title('Real foot');axis([-1 1 -1 1 -1 1])
+subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); title('Model foot');view(-49,-14);axis([-1 1 -1 1 -1 1])
+
+
+plot_sh_coeff(bhat1, bhat2)
+compare_sh_coeff(bhat1,bhat2)
+plot_convn_of_sh_coef(bhat1, bhat2)
 
 
 
 %------------------------ functions used aboved
 
-    function plot_bones(bones_coordinates, subsampling)
-        %UNTITLED2 Summary of this function goes here
-        %   Detailed explanation goes here
-
-        x= bones_coordinates(:,1);
-        y= bones_coordinates(:,2);
-        z= bones_coordinates(:,3);
-
-        plot3(x(1:subsampling:end),y(1:subsampling:end),z(1:subsampling:end), ...
-            '.', 'Color', rand(1,3));
-    end
-    function [xc,yc,zc,x,y,z] = find_centre_of_bone(bone_coor)
     
-x = bone_coor(:,1);
-y = bone_coor(:,2);
-z = bone_coor(:,3);
-        
-xc = sum(x(:))/length(x);
-yc = sum(y(:))/length(y);
-zc = sum(z(:))/length(z);
-    
-end
-    function [normalized_var, norm_coeff] = normalize(var)
-      norm_coeff = abs(max(var(:)));
-      normalized_var = var/norm_coeff;
-    end
-    function [b_hat, x, y, z_hat] = spherical_harmonics(x, y, z, order)
-        %SPHERICAL_HARMONICS Summary of this function goes here
-        %   Detailed explanation goes here
 
-           %Z=-Z-z0;    ????
-
-        [th,phi,RR]=cart2sph(x,y,z);
-        RRmax=max(RR);
-        RR=RR/RRmax; %unit solid
-        [x,y,z]=sph2cart(th,phi,RR);            
-
-
-
-        SHBasis = construct_SH_basis(order,[x y z],1);
-        warning off %#ok<WNOFF>
-        %b_hat = SHBasis(:,1:(rank+1)*(rank/2+1))\z;
-        b_hat = SHBasis\z;
-        warning on %#ok<WNON>
-             z_hat = SHBasis*b_hat;
-             [th,phi,RR]=cart2sph(x,y,z_hat);
-             [x,y,z_hat]=sph2cart(th,phi,RR*RRmax);  
-end
-
-
-end
 
 

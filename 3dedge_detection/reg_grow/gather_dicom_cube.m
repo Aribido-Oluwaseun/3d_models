@@ -9,7 +9,7 @@ d = ls('*.dcm');
 m = size(d,1);
 topimage = dicomread(d(1,:));
 metadata = dicominfo(d(1,:));
-%keyboard
+keyboard
 [group1 element1] = dicomlookup('PixelSpacing');
 [group2 element2] = dicomlookup('SliceThickness');
 resolution = metadata.(dicomlookup(group1, element1));
