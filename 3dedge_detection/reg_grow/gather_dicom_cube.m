@@ -1,5 +1,5 @@
 
-function [threedarray] = gather_dicom_cube() 
+function [threedarray,xthickness, ythickness,zthickness] = gather_dicom_cube() 
 close all
 clear all
 
@@ -9,12 +9,14 @@ d = ls('*.dcm');
 m = size(d,1);
 topimage = dicomread(d(1,:));
 metadata = dicominfo(d(1,:));
+%keyboard
 [group1 element1] = dicomlookup('PixelSpacing');
 [group2 element2] = dicomlookup('SliceThickness');
 resolution = metadata.(dicomlookup(group1, element1));
 xthickness = resolution(1);
 ythickness = resolution(2);
 zthickness = metadata.(dicomlookup(group2, element2));
+
 threedarray = zeros(size(topimage,1),size(topimage,2),size(d,1));
 threedarray(:,:,1) = topimage;
 for i = 2:size(d,1)

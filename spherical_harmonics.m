@@ -19,5 +19,7 @@ warning on %#ok<WNON>
      z_hat = SHBasis*b_hat;
      [th,phi,RR]=cart2sph(x,y,z_hat);
      [x,y,z_hat]=sph2cart(th,phi,RR*RRmax);  
+end
+
      
 
