@@ -3,17 +3,21 @@ dicom_cube = gather_dicom_cube;
 [bones3d,p,q,r] = multithresholding_for_3d(dicom_cube); %find bone in 3d
 %plot_3d_thresholded(p,q,r, bones3d, 100);
 bones_cube = save_bones3d_to_3d_matrix_as_bw(bones3d);
+%struct_of_bones_coordinates_3d = find_all_bones_coorinates_for_3d(bones_cube)
 
-%load segmented_bones
+load segmented_bones
 %plot_region_growing_bones_3d(struct_of_bones_coordinates_3d,10)
 bones_xyz = matrix3d_to_xyz_coordinates(bones3d);
-
-%load calcaneus
+%SRODA :find_all_non_zero_bones(struct_of_coordinates_3d);
+% rename files from justyna
+load calcaneus
 %------------------------------ calcaneus extraction
 b11 = struct_of_bones_coordinates_3d.bone111; %calcaneus 1 part1
 b12 = struct_of_bones_coordinates_3d.bone105; %calcaneus 1 part2
 b2 = struct_of_bones_coordinates_3d.bone70; % calcaneus 2
 b1 =[b11; b12];
+
+
 %------------------------------ calcaneus plotting
 subsampling = 1;
 figure,

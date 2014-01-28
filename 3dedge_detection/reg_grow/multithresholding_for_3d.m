@@ -8,7 +8,7 @@ data3d = dicom_cube(:);
 data3d = reshape(data3d, p,q*r);
 thresh = multithresh(data3d, 4);
 segmented_image = imquantize(data3d, thresh);
-bones3d = segmented_image == 5;        % magic numbers: 5 - segmented class describing bone layer;)
+bones3d = segmented_image == 4;        % magic numbers: 5 - segmented class describing bone layer;)
 
 
 

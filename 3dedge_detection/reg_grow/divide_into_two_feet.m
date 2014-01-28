@@ -1,7 +1,7 @@
 function [G, C]= divide_into_two_feet(X,plotoption)
 
 [numInst,numDims] = size(X);
-number_of_classes = 4;
+number_of_classes = 2;
 
 %# K-means clustering
 %# (K: number of clusters, G: assigned groups, C: cluster centers)

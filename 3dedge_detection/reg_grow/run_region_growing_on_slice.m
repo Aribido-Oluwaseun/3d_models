@@ -5,7 +5,9 @@ function run_region_growing_on_slice(number_of_contours)
 
 dicom_cube = gather_dicom_cube;
 
-image = choose_dicom_image(dicom_cube,'axial',220);
+image = choose_dicom_image(dicom_cube,'axial',120);
+%image = imadjust(image/max(image(:)),[0 1],[0 1],2*(1-0.5));
+
 [thresh, segmented_image] = multithresholding(image, 4);
 [struct_segmented_images, bone] = extract_tissue_layers(segmented_image, thresh);
 
@@ -21,3 +23,8 @@ plot_3d_layer(p,q,r, bones3d)
 plot_movie_layer(dicom_cube, bones3d, p, q, r)
 
 end
+
+
+%         im = double(squeeze(threedarray(axvert,axhorz,z)));
+%         im = imadjust(im/max(im(:)),[0 1],[0 1],2*(1-0.5));%(1-get(slide,'Value')));
+%         imshow(im); axis square;

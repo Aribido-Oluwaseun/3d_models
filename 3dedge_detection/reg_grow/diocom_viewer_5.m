@@ -188,8 +188,8 @@ end
 
     function lookfordicom(src, eventdata)
          try
-        %folder = uigetdir;
-        folder = 'C:\Users\Aleksandra\Desktop\W11\image_proc_proof\01_082013\foot';
+        folder = uigetdir;
+        %folder = 'C:\Users\Aleksandra\Desktop\W11\image_proc_proof\01_082013\foot';
         w = cd; cd(folder);
         
     catch %#ok<CTCH>

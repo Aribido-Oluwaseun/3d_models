@@ -24,7 +24,7 @@ z1=ys;
 
 
 
-H= [z1 y1 ones(size(z1))];
+H= [xs ys ones(size(xs))];
 w=exp(-((xs-xm).^2)/2000)+exp(-((ys-ym).^2)/2000) +exp(-((zs-zm).^2)/2000);
 w=w'*w;
 
