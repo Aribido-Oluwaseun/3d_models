@@ -1,42 +1,33 @@
-%--------------------------- data preprocessing
-dicom_cube = gather_dicom_cube;
-[bones3d,p,q,r] = multithresholding_for_3d(dicom_cube); %find bone in 3d
-%plot_3d_thresholded(p,q,r, bones3d, 100);
-bones_cube = save_bones3d_to_3d_matrix_as_bw(bones3d);
-%struct_of_bones_coordinates_3d = find_all_bones_coorinates_for_3d(bones_cube)
 
-load segmented_bones
-%plot_region_growing_bones_3d(struct_of_bones_coordinates_3d,10)
+
+dicom_cube = gather_dicom_cube;
+[bones3d,p,q,r] = multithresholding_for_3d(dicom_cube,4); %find bone in 3d
+plot_3d_thresholded(p,q,r, bones3d, 100);
+bones_cube = save_bones3d_to_3d_matrix_as_bw(bones3d);
 bones_xyz = matrix3d_to_xyz_coordinates(bones3d);
 
-%non_zero_bones = find_all_non_zero_bones(struct_of_coordinates_3d);
+load foot_p2_patryk
+non_zero_bones = find_all_non_zero_bones(struct_of_bones_coordinates_3d);
+%struct_of_bones_coordinates_3d = find_all_bones_coorinates_for_3d(bones_cube)
 
-load calcaneus
-%------------------------------ calcaneus extraction
-b11 = struct_of_bones_coordinates_3d.bone111; %calcaneus 1 part1
-b12 = struct_of_bones_coordinates_3d.bone105; %calcaneus 1 part2
-b2 = struct_of_bones_coordinates_3d.bone70; % calcaneus 2
-b1 =[b11; b12];
+%plot_region_growing_bones(struct_of_bones_coordinates_3d, bones3d)
+figure, plot_region_growing_bones_3d(struct_of_bones_coordinates_3d,10);
 
+calc1 = non_zero_bones.bone2469; %calcaneus 1 part2
+calc21 = non_zero_bones.bone1593; %calcaneus 1 part1
+calc22 = non_zero_bones.bone1020;
+calc2=[calc21;calc22];
 
-%------------------------------ calcaneus plotting
 subsampling = 1;
 figure,
-plot_bones(b11,subsampling);
+plot_bones(calc1,subsampling);
 hold on
-plot_bones(b12,subsampling);
-plot_bones(b2,subsampling);
+plot_bones(calc2,subsampling);
 hold off
 
-figure,
-plot_bones(b1,subsampling);
-hold on
-plot_bones(b2,10);
-hold off
 
-%---------------------  spherical harmonics
-[xc1,yc1,zc1,x1,y1,z1] = find_centre_of_bone(b1);
-[xc2,yc2,zc2,x2,y2,z2] = find_centre_of_bone(b2);
+[xc1,yc1,zc1,x1,y1,z1] = find_centre_of_bone(calc1);
+[xc2,yc2,zc2,x2,y2,z2] = find_centre_of_bone(calc2);
    
    
 [x1n, norm_coeff_x1] = normalize(x1-xc1);
@@ -64,12 +55,3 @@ subplot(1,2,2), plot3(xhat2, yhat2, zhat2,'r.'); title('Model foot');view(-49,-1
 plot_sh_coeff(bhat1, bhat2)
 compare_sh_coeff(bhat1,bhat2)
 plot_convn_of_sh_coef(bhat1, bhat2)
-
-
-
-%------------------------ functions used aboved
-
-    
-
-
-
