@@ -10,7 +10,7 @@ for i=1:m
     bone_coor = struct_of_coordinates_3d.(bone_num);
     [p,q] = size(bone_coor);
      
-    if p > 10
+    if p > 1000
         x = bone_coor(:,1);
         y = bone_coor(:,2);
         z = bone_coor(:,3);
