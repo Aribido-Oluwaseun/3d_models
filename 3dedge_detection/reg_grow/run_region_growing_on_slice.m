@@ -11,7 +11,10 @@ image = choose_dicom_image(dicom_cube,'axial',120);
 [thresh, segmented_image] = multithresholding(image, 4);
 [struct_segmented_images, bone] = extract_tissue_layers(segmented_image, thresh);
 
-struct_of_contours = region_growing(bone, number_of_contours);
+
+% contours = region_growing(image,number_of_contours)
+
+contours = region_growing(bone, number_of_contours);
 %branch----------contours_with_morphological_operations--------------
 contoured_wih_morphological_operation_image = morphological_contouring(bone);
 

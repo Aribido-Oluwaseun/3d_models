@@ -3,8 +3,8 @@ function [threedarray,xthickness, ythickness,zthickness] = gather_dicom_cube()
 close all
 clear all
 
-%folder = 'C:\Users\Aleksandra\Desktop\W11\image_proc_proof\01_082013\foot';
-folder = uigetdir('D:\piety_dicom');
+folder = 'C:\Users\Aleksandra\Desktop\W11\image_proc_proof\01_082013\foot';
+%folder = uigetdir('D:\piety_dicom');
 cd(folder);
 d = ls('*.dcm');
 m = size(d,1);
